@@ -1,7 +1,6 @@
 package app;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,23 +23,9 @@ public class Application {
 
 
     public Application() throws MalformedURLException {
-
-        System.setProperty("webdriver.chrome.driver", "C:/webDriver/chromedriver.exe");
-        driver = new ChromeDriver();
-       // baseUrl = "https://www.tinkoff.ru/career/vacancies/";
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-
-//
-//        driver = new EventFiringWebDriver(getDriver());
-//        ((EventFiringWebDriver) driver).register(new test.BrowsersFactory.MyListener());
-//        wait = new WebDriverWait(driver, 10);
+        driver = getDriver();
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-       // driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-
-        //page
-//        google = new GoogleMainPage(driver);
-//        googleResults = new GoogleResultPage(driver);
         tinkoffJob = new TinkoffJobPage(driver);
     }
 

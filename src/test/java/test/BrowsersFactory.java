@@ -8,8 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.logging.Level;
 
 
@@ -53,28 +52,31 @@ public class BrowsersFactory {
     public static WebDriver buildDriver(String browserName) throws MalformedURLException {
         switch (browserName) {
 
-            case "chrome_invisible":
-                ChromeOptions chromeInvisibleOpt = new ChromeOptions();
-                chromeInvisibleOpt.addArguments("--disable-notifications");
-                chromeInvisibleOpt.addArguments("--headless");
-                return new ChromeDriver(chromeInvisibleOpt);
-
-            case "firefox":
-                //Disable login to console and redirect log to an external file
-                System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-                System.setProperty(FirefoxDriver.SystemProperty.BROWSER_LOGFILE, "./src/test/java/firefox_logs/log");
-
-                FirefoxOptions ffOpt = new FirefoxOptions();
-                ffOpt.addPreference("dom.webnotifications.enabled", false);
-                return new FirefoxDriver(ffOpt);
-
-            default:
+            case "chrome":
+                System.setProperty("webdriver.chrome.driver", "C:/webDriver/chromedriver.exe");
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-notifications");
                 LoggingPreferences logPrefs = new LoggingPreferences();
                 logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
                 options.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-                return new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),options);
+                return new ChromeDriver(options);
+
+            case "firefox":
+                System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
+                System.setProperty("webdriver.gecko.driver", "C:/webDriver/geckodriver.exe");
+                FirefoxOptions ffOpt = new FirefoxOptions();
+                ffOpt.addPreference("dom.webnotifications.enabled", false);
+                return new FirefoxDriver(ffOpt);
+            case "opera":
+                System.setProperty("webdriver.opera.driver", "C:/webDriver/operadriver.exe");
+                return new OperaDriver();
+            default:
+                ChromeOptions options2 = new ChromeOptions();
+                options2.addArguments("--disable-notifications");
+                LoggingPreferences logPrefs2 = new LoggingPreferences();
+                logPrefs2.enable(LogType.PERFORMANCE, Level.ALL);
+                options2.setCapability(CapabilityType.LOGGING_PREFS, logPrefs2);
+                return new ChromeDriver(options2);
         }
     }
 }

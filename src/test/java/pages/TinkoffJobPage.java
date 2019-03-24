@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class TinkoffJobPage {
     public TinkoffJobPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, 10);
+        wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
     }
 
@@ -23,48 +23,35 @@ public class TinkoffJobPage {
 
     public void open() {
         driver.navigate().to("https://www.tinkoff.ru/career/vacancies/");
-        //isLoadedByTitleContains("Google");
     }
 
     public void clickToInput(String name) {
-        driver.findElement(By.xpath(getLocator("input",name))).click();
+        driver.findElement(By.xpath(getLocator("input", name))).click();
     }
 
     public void clickToCheckBox(String name) {
-        driver.findElement(By.xpath(getLocator("checkbox",name))).click();
+        driver.findElement(By.xpath(getLocator("checkbox", name))).click();
     }
 
     public void clickToButton(String name) {
-        driver.findElement(By.xpath(getLocator("button",name))).click();
+        driver.findElement(By.xpath(getLocator("button", name))).click();
     }
 
     public void checkErrorInput(String field, String errorText) {
-        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("input",field))).getText());
+        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("input", field))).getText());
     }
 
     public void checkErrorCheckbox(String field, String errorText) {
-        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("checkbox",field))).getText());
+        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("checkbox", field))).getText());
     }
 
     public void checkErrorUploader(String field, String errorText) {
-        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("uploader",field))).getText());
+        assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("uploader", field))).getText());
     }
 
     String getXpathByNameErrorOfWebElement(String type, String name) {
         return getLocator(type, name) + "/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]";
-//        String xpath = "";
-//        switch (name){
-//            case "name" :
-//            case "birthday" :
-//            case "city" :
-//            case "email" :
-//            case "phone" :
-//                return String.format("//input[@name='%s']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]",name);
-//            case "ui-checkbox__text-wrapper" :
-//            case "ui-upload" :
-//                return  String.format("//*[@class=\"%s\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]",name);
-//        }
-//        return xpath;
+
     }
 
     private String getLocator(String type, String name) {

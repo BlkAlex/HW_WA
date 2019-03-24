@@ -28,77 +28,78 @@ public class TestVacancies {
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Перетащите файлы сюда'])[1]/following::div[5]")).click();
         driver.findElement(By.name("socialLink0")).click();
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='условиями передачи информации'])[1]/following::button[1]")).click();
-
     }
 
-
+    String getXpathByNameOfWebElement(String name){
+        String xpath = "";
+        switch (name){
+            case "name" :
+            case "birthday" :
+            case "city" :
+            case "email" :
+            case "phone" :
+                return String.format("//input[@name='%s']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]",name);
+            case "ui-checkbox__text-wrapper" :
+            case "ui-upload" :
+                return  String.format("//*[@class=\"%s\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]",name);
+        }
+        return xpath;
+    }
     @Test
     public void testVacancies_2() {
         driver.get("https://www.tinkoff.ru/career/vacancies/");
-        driver.findElement(By.name("name")).click();
-        driver.findElement(By.name("name")).clear();
-        driver.findElement(By.name("name")).sendKeys("qw");
-        driver.findElement(By.name("name")).sendKeys(Keys.TAB);
+        WebElement nameField = driver.findElement(By.name("name"));
+        WebElement birthdayField = driver.findElement(By.name("birthday"));
+        WebElement cityField = driver.findElement(By.name("city"));
+        WebElement emailField = driver.findElement(By.name("email"));
+        WebElement phoneElement = driver.findElement(By.name("phone"));
+
+        nameField.sendKeys("qq");
+        nameField.sendKeys(Keys.TAB);
         assertEquals("Допустимо использовать только буквы русского алфавита и дефис",
-                driver.findElement(By.xpath("//input[@name='name']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("name"))).getText());
 
-        driver.findElement(By.name("name")).click();
-        driver.findElement(By.name("name")).sendKeys(Keys.BACK_SPACE,Keys.BACK_SPACE);
-        driver.findElement(By.name("name")).sendKeys("вв");
-        driver.findElement(By.name("name")).sendKeys(Keys.TAB);
+        nameField.sendKeys(Keys.BACK_SPACE,Keys.BACK_SPACE);
+        nameField.sendKeys("вв");
+        nameField.sendKeys(Keys.TAB);
         assertEquals("Необходимо ввести фамилию и имя через пробел",
-                driver.findElement(By.xpath("//input[@name='name']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("name"))).getText());
 
-        driver.findElement(By.name("birthday")).click();
-        driver.findElement(By.name("birthday")).clear();
-        driver.findElement(By.name("birthday")).sendKeys("14.14.1414");
-        driver.findElement(By.name("birthday")).sendKeys(Keys.TAB);
+        birthdayField.sendKeys("14.14.1414");
+        birthdayField.sendKeys(Keys.TAB);
         assertEquals("Поле заполнено некорректно",
-                driver.findElement(By.xpath("//input[@name='birthday']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("birthday"))).getText());
 
-        driver.findElement(By.name("city")).click();
-        driver.findElement(By.name("city")).clear();
-        driver.findElement(By.name("city")).sendKeys(" ");
-        driver.findElement(By.name("city")).sendKeys(Keys.TAB);
+        cityField.sendKeys(" ");
+        cityField.sendKeys(Keys.TAB);
         assertEquals("Поле обязательное",
-                driver.findElement(By.xpath("//input[@name='city']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("city"))).getText());
 
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("email")).clear();
-        driver.findElement(By.name("email")).sendKeys("123");
-        driver.findElement(By.name("email")).sendKeys(Keys.TAB);
+        emailField.sendKeys("123");
+        emailField.sendKeys(Keys.TAB);
 
         assertEquals("Введите корректный адрес эл. почты",
-                driver.findElement(By.xpath("//input[@name='email']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("email"))).getText());
 
-        driver.findElement(By.name("phone")).click();
-        driver.findElement(By.name("phone")).clear();
-        driver.findElement(By.name("phone")).sendKeys("+7(123)");
-        driver.findElement(By.name("phone")).sendKeys(Keys.TAB);
+        phoneElement.sendKeys("+7(123)");
+        phoneElement.sendKeys(Keys.TAB);
 
         assertEquals("Номер телефона должен состоять из 10 цифр, начиная с кода оператора",
-                driver.findElement(By.xpath("//input[@name='phone']/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
-
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("phone"))).getText());
 //        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Перетащите файлы сюда'])[1]/following::div[5]")).click();
 //        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Перетащите файлы сюда'])[1]/following::div[5]")).sendKeys("C:\\fakepath\\1.xml");
 //        assertEquals("Неверный тип документа, разрешенные форматы - pdf, doc, docx, odt",
 //                driver.findElement(By.xpath("//*[@class=\"ui-upload\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'ui-text')]")).getText());
-
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Добавить ещё ссылку'])[1]/following::label[1]")).click();
-
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='условиями передачи информации'])[1]/following::button[1]")).click();
 
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-checkbox__text-wrapper"))).getText());
 
         assertEquals("Поле обязательное",
-                driver.findElement(By.xpath("//*[@class=\"ui-checkbox__text-wrapper\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
-
-
-
-        // теперь обязхательность полей
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-upload"))).getText());
         assertEquals("Поле обязательное",
-                driver.findElement(By.xpath("//*[@class=\"ui-upload\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
-        assertEquals("Поле обязательное",
-                driver.findElement(By.xpath("//*[@class=\"ui-checkbox-directive\"]/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]")).getText());
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-checkbox__text-wrapper"))).getText());
     }
 
     @After

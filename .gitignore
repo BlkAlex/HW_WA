@@ -1,36 +1,29 @@
+*.bak
 *.class
-           *.iml
-           # Package Files #
-           *.jar
-           *.war
-           *.ear
-           *.zip
-           *.pydevproject
-           .project
-           .metadata
-           target/
-           bin/**
-           tmp/**
-           tmp/**/*
-           *.tmp
-           *.bak
-           *.log
-           local.properties
-           .classpath
-           .settings/
-           .loadpath
-           # Locally stored "Eclipse launch configurations"
-           *.launch
-           .idea/
-           .idea/libraries
-           .idea/workspace.xml
-	   .idea/*
-           .settings/
-           .svn/
-           *.classpath
-           *.project
-           *.settings
-           /src/test/java/stories
-           .src/test/java/stories
-           /.gitignore
-           /java-docs/.idea/*
+*.classpath
+*.iml
+*.launch
+atlassian-ide-plugin.xml
+*.log
+*.project
+*.settings
+*.tmp
+.loadpath
+.metadata
+.project
+.idea/*
+.idea/**
+.settings/
+.svn
+bin/**
+local.properties
+target/
+tmp/**
+*.MF
+*.jar
+*.war
+*.ear
+*.zip
+*.pdf
+*.xls
+sqlparams

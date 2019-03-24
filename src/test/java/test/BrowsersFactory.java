@@ -21,7 +21,9 @@ import java.util.logging.Level;
 
 
 public class BrowsersFactory {
-
+    private static final String PATH_TO_CHROME = "C:/webDriver/chromedriver.exe";
+    private static final String PATH_TO_FIREFOX = "C:/webDriver/geckodriver.exe";
+    private static final String PATH_TO_OPERA = "C:/webDriver/operadriver.exe";
     public static class MyListener extends AbstractWebDriverEventListener {
 
         Logger logger = LoggerFactory.getLogger(BrowsersFactory.class);
@@ -53,7 +55,7 @@ public class BrowsersFactory {
         switch (browserName) {
 
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "C:/webDriver/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", PATH_TO_CHROME);
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-notifications");
                 LoggingPreferences logPrefs = new LoggingPreferences();
@@ -63,12 +65,12 @@ public class BrowsersFactory {
 
             case "firefox":
                 System.setProperty(FirefoxDriver.SystemProperty.DRIVER_USE_MARIONETTE, "true");
-                System.setProperty("webdriver.gecko.driver", "C:/webDriver/geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", PATH_TO_FIREFOX);
                 FirefoxOptions ffOpt = new FirefoxOptions();
                 ffOpt.addPreference("dom.webnotifications.enabled", false);
                 return new FirefoxDriver(ffOpt);
             case "opera":
-                System.setProperty("webdriver.opera.driver", "C:/webDriver/operadriver.exe");
+                System.setProperty("webdriver.opera.driver", PATH_TO_OPERA);
                 return new OperaDriver();
             default:
                 ChromeOptions options2 = new ChromeOptions();

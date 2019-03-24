@@ -20,14 +20,32 @@ public class TestVacancies {
     @Test
     public void testVacancies_1() {
         driver.get("https://www.tinkoff.ru/career/vacancies/");
-        driver.findElement(By.name("name")).click();
-        driver.findElement(By.name("birthday")).click();
-        driver.findElement(By.name("city")).click();
-        driver.findElement(By.name("email")).click();
-        driver.findElement(By.name("phone")).click();
-        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Перетащите файлы сюда'])[1]/following::div[5]")).click();
-        driver.findElement(By.name("socialLink0")).click();
+        WebElement nameField = driver.findElement(By.name("name"));
+        WebElement birthdayField = driver.findElement(By.name("birthday"));
+        WebElement cityField = driver.findElement(By.name("city"));
+        WebElement emailField = driver.findElement(By.name("email"));
+        WebElement phoneElement = driver.findElement(By.name("phone"));
+        nameField.click();
+        birthdayField.click();
+        cityField.click();
+        emailField.click();
+        phoneElement.click();
+        driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Добавить ещё ссылку'])[1]/following::label[1]")).click();
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='условиями передачи информации'])[1]/following::button[1]")).click();
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("name"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("birthday"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("city"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("email"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("phone"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-upload"))).getText());
+        assertEquals("Поле обязательное",
+                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-checkbox__text-wrapper"))).getText());
     }
 
     String getXpathByNameOfWebElement(String name){
@@ -95,11 +113,9 @@ public class TestVacancies {
 
         assertEquals("Поле обязательное",
                 driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-checkbox__text-wrapper"))).getText());
-
         assertEquals("Поле обязательное",
                 driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-upload"))).getText());
-        assertEquals("Поле обязательное",
-                driver.findElement(By.xpath(getXpathByNameOfWebElement("ui-checkbox__text-wrapper"))).getText());
+
     }
 
     @After

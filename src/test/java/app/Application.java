@@ -7,7 +7,7 @@ import test.BrowsersFactory;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by Иван on 16.04.2018.
+ * Created by blk
  */
 public class Application {
     private WebDriver driver;

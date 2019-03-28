@@ -2,14 +2,10 @@ package test;
 
 import org.junit.Test;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import pages.TinkoffJobPage;
 
 
 public class TestVacancies extends BaseRunner {
-    private WebDriver driver;
-    private String baseUrl;
-
     @Test
     public void testVacancies_1() {
         TinkoffJobPage tinkoffJobMainPage = app.tinkoffJob;

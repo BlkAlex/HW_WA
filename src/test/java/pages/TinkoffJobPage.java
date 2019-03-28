@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 
 public class TinkoffJobPage {
+    WebDriver driver;
+    WebDriverWait wait;
+
     public TinkoffJobPage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 30);
@@ -17,9 +20,6 @@ public class TinkoffJobPage {
     public void setTextToFiled(String filed, CharSequence... text) {
         driver.findElement(By.name(filed)).sendKeys(text);
     }
-
-    WebDriver driver;
-    WebDriverWait wait;
 
     public void open() {
         driver.navigate().to("https://www.tinkoff.ru/career/vacancies/");

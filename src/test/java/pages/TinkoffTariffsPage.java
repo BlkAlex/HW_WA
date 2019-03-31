@@ -1,11 +1,13 @@
 package pages;
 
+import elements.Button;
 import elements.CheckBox;
 import elements.Select;
 import elements.TextInput;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class TinkoffTariffsPage extends Page {
@@ -40,7 +42,13 @@ public class TinkoffTariffsPage extends Page {
         element.click();
     }
 
+    public void checkActiveButton() {
+        assertTrue(new Button(driver, "//button[contains(@class,'Button')]").isActive());
+    }
 
+    public void compareSummaryWithValue(String value) {
+        assertEquals("Общая цена: " + value + " \u20BD", driver.findElement(By.xpath("//h3[contains(@class,'mobileOperatorProductCalculator')][contains(text(),'Общая цена')]")).getText());
+    }
     public void checkCheckBox(String name, boolean state) {
         CheckBox checkBox = new CheckBox(driver, String.format("//div[contains(@class,'CheckboxWithDescription')][.//*[contains(text(),'%s')]]//div[contains(@class,'container')]", name));
         if (checkBox.getState() != state) {

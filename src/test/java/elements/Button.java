@@ -7,10 +7,13 @@ import org.openqa.selenium.WebElement;
 public class Button {
     WebElement buttonElement;
 
-    public void Button(WebDriver driver, String locator) {
+    public Button(WebDriver driver, String locator) {
         buttonElement = driver.findElement(By.xpath(locator));
     }
 
+    public boolean isActive() {
+        return buttonElement.isEnabled();
+    }
     public String getText() {
         return buttonElement.getText();//fixme
     }

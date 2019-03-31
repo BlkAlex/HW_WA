@@ -25,17 +25,18 @@ public class TestMobile extends BaseRunner {
     }
 
     @Test
-    public void testVacancies_2() {
+    public void test_3() {
         TinkoffTariffsPage tinkoffTariffsPage = app.tinkoffTariffs;
         tinkoffTariffsPage.open();
         tinkoffTariffsPage.selectValue("Звонки", "0 минут");
         tinkoffTariffsPage.selectValue("Интернет", "0 ГБ");
-        tinkoffTariffsPage.checkCheckBox("Мессенджеры", true);
-        tinkoffTariffsPage.checkCheckBox("Социальные сети", true);
-        tinkoffTariffsPage.checkCheckBox("Музыка", true);
-        tinkoffTariffsPage.checkCheckBox("Видео", true);
-        tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", true);
-
+        tinkoffTariffsPage.checkCheckBox("Мессенджеры", false);
+        tinkoffTariffsPage.checkCheckBox("Социальные сети", false);
+        tinkoffTariffsPage.checkCheckBox("Музыка", false);
+        tinkoffTariffsPage.checkCheckBox("Видео", false);
+        tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", false);
+        tinkoffTariffsPage.compareSummaryWithValue("0");
+        tinkoffTariffsPage.checkActiveButton();
     }
 
 }

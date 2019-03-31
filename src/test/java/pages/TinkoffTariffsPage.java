@@ -7,8 +7,7 @@ import elements.TextInput;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class TinkoffTariffsPage extends Page {
     public TinkoffTariffsPage(WebDriver driver) {
@@ -47,13 +46,25 @@ public class TinkoffTariffsPage extends Page {
     }
 
     public void compareSummaryWithValue(String value) {
-        assertEquals("Общая цена: " + value + " \u20BD", driver.findElement(By.xpath("//h3[contains(@class,'mobileOperatorProductCalculator')][contains(text(),'Общая цена')]")).getText());
+        assertEquals(value, driver.findElement(By.xpath("//h3[contains(@class,'mobileOperatorProductCalculator')][contains(text(),'Общая цена')]")).getText());
+    }
+
+    public void compareSummaryWithValueNotEquals(String value) {
+        assertNotEquals(value, driver.findElement(By.xpath("//h3[contains(@class,'mobileOperatorProductCalculator')][contains(text(),'Общая цена')]")).getText());
+    }
+
+    public String getSummary() {
+        return driver.findElement(By.xpath("//h3[contains(@class,'mobileOperatorProductCalculator')][contains(text(),'Общая цена')]")).getText();
     }
     public void checkCheckBox(String name, boolean state) {
         CheckBox checkBox = new CheckBox(driver, String.format("//div[contains(@class,'CheckboxWithDescription')][.//*[contains(text(),'%s')]]//div[contains(@class,'container')]", name));
         if (checkBox.getState() != state) {
             checkBox.setState(state);
         }
+    }
+
+    public void reloadPage() {
+        driver.navigate().refresh();
     }
 
     public void typeNameField(String value){
@@ -71,4 +82,21 @@ public class TinkoffTariffsPage extends Page {
         assertTrue(driver.getTitle().contains(title));
     }
 
+    public void selectRegion(String value) {
+        if (isRegionSelected()) {
+            driver.findElement(By.xpath("//div[contains(@class,'MvnoRegionConfirmation__title')]")).click();
+        } else {
+            driver.findElement(By.xpath("//span[contains(@class,'MvnoRegionConfirmation')][contains(text(),'Нет, изменить')]")).click();
+        }
+        driver.findElement(By.xpath(String.format("//div[contains(@class,'MobileOperatorRegionsPopup__region')]//*[contains(text(),'%s')]", value))).click();
+        // driver.findElement(By.xpath("//div[contains(@class,'ui-form-app-popup-close-button')]")).click();
+    }
+
+    public void isRegionEqualsValue(String value) {
+        assertTrue(driver.findElement(By.xpath("//div[contains(@class,'MvnoRegionConfirmation__title')]")).getText().contains(value));
+    }
+
+    public boolean isRegionSelected() {
+        return !driver.findElement(By.xpath("//div[contains(@class,'MvnoRegionConfirmation__title')]")).getText().contains("Ваш регион");
+    }
 }

@@ -25,6 +25,32 @@ public class TestMobile extends BaseRunner {
     }
 
     @Test
+    public void test_2() {
+        TinkoffTariffsPage tinkoffTariffsPage = app.tinkoffTariffs;
+        tinkoffTariffsPage.open();
+        tinkoffTariffsPage.selectRegion("Москва");
+        tinkoffTariffsPage.reloadPage();
+        tinkoffTariffsPage.isRegionEqualsValue("Москва");
+        String sumMoscow = tinkoffTariffsPage.getSummary();
+        tinkoffTariffsPage.selectRegion("Краснодар");
+        tinkoffTariffsPage.compareSummaryWithValueNotEquals(sumMoscow);
+        tinkoffTariffsPage.selectValue("Звонки", "Безлимитные минуты");
+        tinkoffTariffsPage.selectValue("Интернет", "Безлимитный интернет");
+        tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", true);
+        tinkoffTariffsPage.checkCheckBox("Режим модема", true);
+        String sumKrasn = tinkoffTariffsPage.getSummary();
+
+        tinkoffTariffsPage.selectRegion("Москва");
+        tinkoffTariffsPage.selectValue("Звонки", "Безлимитные минуты");
+        tinkoffTariffsPage.selectValue("Интернет", "Безлимитный интернет");
+        tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", true);
+        tinkoffTariffsPage.checkCheckBox("Режим модема", true);
+        tinkoffTariffsPage.compareSummaryWithValue(sumKrasn);
+
+    }
+
+
+    @Test
     public void test_3() {
         TinkoffTariffsPage tinkoffTariffsPage = app.tinkoffTariffs;
         tinkoffTariffsPage.open();
@@ -35,7 +61,7 @@ public class TestMobile extends BaseRunner {
         tinkoffTariffsPage.checkCheckBox("Музыка", false);
         tinkoffTariffsPage.checkCheckBox("Видео", false);
         tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", false);
-        tinkoffTariffsPage.compareSummaryWithValue("0");
+        tinkoffTariffsPage.compareSummaryWithValue("Общая цена: 0 \u20BD");
         tinkoffTariffsPage.checkActiveButton();
     }
 

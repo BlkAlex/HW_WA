@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 public class Page {
 
     Logger logger = LoggerFactory.getLogger(Page.class);
@@ -32,7 +34,9 @@ public class Page {
             for (String title : driver.getWindowHandles()) {
                 driver.switchTo().window(title);
                 System.out.println(d.getTitle());
-                check = d.getTitle().equals(windowName);
+                if (d.getTitle().equals(windowName)) {
+                    return true;
+                } else check = false;
             }
             return check;
         });
@@ -52,6 +56,9 @@ public class Page {
         logger.info("Закрыта активная вкладка");
     }
 
+    public void checkCurrentURL(String url) {
+        assertEquals(url, driver.getCurrentUrl());
+    }
     public void switchToMainTab(){
         driver.switchTo().window(driver.getWindowHandles().iterator().next());
     }

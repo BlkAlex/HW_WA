@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.ElementNotInteractableException;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
+import elements.CheckBox;
+import elements.Select;
+import elements.TextInput;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.Assert.assertTrue;
@@ -12,6 +12,40 @@ public class TinkoffTariffsPage extends Page {
     public TinkoffTariffsPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    Select internetSelect;
+    Select callsSelect;
+    Select nationalitySelect;
+    CheckBox messengersCheckBox;
+    CheckBox socialNetsCheckBox;
+    CheckBox musicCheckBox;
+    CheckBox videoCheckBox;
+    CheckBox unlimitedSmsCheckBox;
+    CheckBox modemRejimCheckBox;
+    CheckBox iAgreeCheckBox;
+    TextInput fioTextInput;
+    TextInput phoneTextInput;
+    TextInput emailTextInput;
+
+    public void open() {
+        driver.navigate().to("https://www.tinkoff.ru/mobile-operator/tariffs/");
+    }
+
+    public void selectValue(String nameSelector, String value) {
+        driver.findElement(By.xpath(String.format("//*[@class='ui-form__field'][.//*[contains(@class,'label')][contains(text(),'%s')]]", nameSelector))).click();
+        WebElement element = driver.findElement(By.xpath(String.format
+                ("//*[@class='ui-form__field'][.//*[contains(@class,'label')][contains(text(),'%s')]]//div[@class='ui-dropdown-field-list__item'][.//*[@class='ui-dropdown-field-list__item-text'][text()='%s']]"
+                        , nameSelector, value)));
+        element.click();
+    }
+
+
+    public void checkCheckBox(String name, boolean state) {
+        CheckBox checkBox = new CheckBox(driver, String.format("//div[contains(@class,'CheckboxWithDescription')][.//*[contains(text(),'%s')]]//div[contains(@class,'container')]", name));
+        if (checkBox.getState() != state) {
+            checkBox.setState(state);
+        }
     }
 
     public void typeNameField(String value){

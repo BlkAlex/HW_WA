@@ -1,10 +1,7 @@
 package app;
 
 import org.openqa.selenium.WebDriver;
-import pages.GoogleMainPage;
-import pages.GoogleResultPage;
-import pages.TinkoffJobPage;
-import pages.TinkoffTariffsPage;
+import pages.*;
 import test.BrowsersFactory;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +13,7 @@ public class Application {
     private WebDriver driver;
     public TinkoffJobPage tinkoffJob;
     public TinkoffTariffsPage tinkoffTariffs;
+    public TinkoffDocumentsPage tinkoffDocumentsPage;
     public GoogleMainPage google;
     public GoogleResultPage googleResults;
 
@@ -29,6 +27,7 @@ public class Application {
         googleResults = new GoogleResultPage(driver);
         //tinkoffJob = new TinkoffJobPage(driver);
         tinkoffTariffs = new TinkoffTariffsPage(driver);
+        tinkoffDocumentsPage = new TinkoffDocumentsPage(driver);
     }
 
     public void quit() {

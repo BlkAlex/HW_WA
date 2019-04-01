@@ -3,6 +3,7 @@ package test;
 import org.junit.Test;
 import pages.GoogleMainPage;
 import pages.GoogleResultPage;
+import pages.TinkoffDocumentsPage;
 import pages.TinkoffTariffsPage;
 
 
@@ -62,6 +63,14 @@ public class TestMobile extends BaseRunner {
         tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", false);
         tinkoffTariffsPage.compareSummaryWithValue("Общая цена: 0 \u20BD");
         tinkoffTariffsPage.checkActiveButton();
+    }
+
+    @Test
+    public void test_4() {
+        TinkoffDocumentsPage tinkoffDocumentsPage = app.tinkoffDocumentsPage;
+        tinkoffDocumentsPage.open();
+        tinkoffDocumentsPage.downloadAnyDocument("first-month-free-siberia.pdf");
+        tinkoffDocumentsPage.checkDownloadedFile();
     }
 
 }

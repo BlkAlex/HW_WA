@@ -3,6 +3,8 @@
 
 ### строки запуска maven
 
-1.0  Запуск тестов на браузере хром с командной строки
-    -Dtest=TestMobile -Dbrowser=chrome verify
+1.1  Запуск тестов по заданию 1 (страница вакансий) на браузере хром с командной строки
+    -Dtest=TestVacancies -Dbrowser=chrome verify
 
+1.1  Запуск тестов по заданию 2 (страница Тинькофф мобайл) на браузере хром с командной строки
+    -Dtest=TestMobile -Dbrowser=chrome verify

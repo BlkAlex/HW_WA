@@ -24,7 +24,7 @@
                 <configuration>
                     <parallel>methods</parallel>
                     <perCoreThreadCount>true</perCoreThreadCount>
-                    <threadCount>2</threadCount>
+                    <threadCount>3</threadCount>
                 </configuration>
             </plugin>
         </plugins>

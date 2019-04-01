@@ -7,6 +7,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.opera.OperaDriver;
 
+import java.io.File;
+import java.util.HashMap;
+
 
 public class BrowsersFactory {
 
@@ -22,6 +25,13 @@ public class BrowsersFactory {
             default:
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-notifications");
+
+                HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+                chromePrefs.put("download.default_directory",
+                        System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
+
+                chromePrefs.put("plugins.always_open_pdf_externally", true);
+                options.setExperimentalOption("prefs", chromePrefs);
                 return new ChromeDriver(options);
         }
     }

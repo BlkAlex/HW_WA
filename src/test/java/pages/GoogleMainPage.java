@@ -13,7 +13,7 @@ public class GoogleMainPage extends Page {
     }
 
     @FindBy(name = "q")
-    public WebElement searchField;
+    private WebElement searchField;
 
 
     public void open() {

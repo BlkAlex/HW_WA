@@ -12,12 +12,12 @@ import java.util.concurrent.TimeUnit;
 public class Application {
     private WebDriver driver;
     public TinkoffJobPage tinkoffJob;
-    public TinkoffTariffsPage tinkoffTariffs;
-    public TinkoffDocumentsPage tinkoffDocumentsPage;
-    public GoogleMainPage google;
-    public GoogleResultPage googleResults;
+    public final TinkoffTariffsPage tinkoffTariffs;
+    public final TinkoffDocumentsPage tinkoffDocumentsPage;
+    public final GoogleMainPage google;
+    public final GoogleResultPage googleResults;
 
-    public final String browserName = System.getProperty("browser") == null ? "chrome" : System.getProperty("browser");
+    private final String browserName = System.getProperty("browser") == null ? "chrome" : System.getProperty("browser");
 
     public Application() {
         driver = getDriver();

@@ -26,16 +26,13 @@ public class TinkoffDocumentsPage extends Page {
     public void downloadAnyDocument(String name) {
         WebElement element = driver.findElement(By.xpath(String.format("//a[contains(@class,'Link')][contains(text(),'Первый месяц')]", name)));
         element.click();
-        String splitStrings[] = element.getAttribute("href").split("/");
+        String[] splitStrings = element.getAttribute("href").split("/");
         waitForFile(driver, new File(String.format("externalFiles/downloadFiles/" + splitStrings[splitStrings.length - 1])), 5);
 
     }
 
-    //a[contains(@class,'Link')][contains(@href,'')]
-
-
     public void checkDownloadedFile() {
-        File dir = new File("externalFiles/downloadFiles"); //path указывает на директорию
+        File dir = new File("externalFiles/downloadFiles");
         File[] arrFiles = dir.listFiles();
         List<File> lst = Arrays.asList(arrFiles);
         boolean isFileDownloaded = lst.size() > 0;
@@ -46,7 +43,7 @@ public class TinkoffDocumentsPage extends Page {
 
     }
 
-    public void waitForFile(WebDriver driver, File file, long timeout) {
+    private void waitForFile(WebDriver driver, File file, long timeout) {
         FluentWait wait = new FluentWait(driver).withTimeout(timeout, TimeUnit.SECONDS).pollingEvery(1, TimeUnit.SECONDS);
         wait.until((webDriver) -> file.exists());
     }

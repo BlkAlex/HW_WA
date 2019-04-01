@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
 
 public class TinkoffJobPage {
-    WebDriver driver;
-    WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public TinkoffJobPage(WebDriver driver) {
         this.driver = driver;
@@ -49,7 +49,7 @@ public class TinkoffJobPage {
         assertEquals(errorText, driver.findElement(By.xpath(getXpathByNameErrorOfWebElement("uploader", field))).getText());
     }
 
-    String getXpathByNameErrorOfWebElement(String type, String name) {
+    private String getXpathByNameErrorOfWebElement(String type, String name) {
         return getLocator(type, name) + "/ancestor::*[@class='ui-form__field']//*[contains(@class,'error-message')]";
 
     }

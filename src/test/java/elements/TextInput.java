@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TextInput {
+class TextInput {
     WebElement inputFieldElement;
 
     public void InputField(WebDriver driver, String locator) {
@@ -16,6 +16,6 @@ public class TextInput {
     }
 
     public String getText() {
-        return inputFieldElement.getAttribute("innerHTML");//fixme
+        return inputFieldElement.getAttribute("innerHTML");
     }
 }

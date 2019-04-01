@@ -4,19 +4,17 @@ import app.Application;
 import org.junit.After;
 import org.junit.Before;
 
-import java.net.MalformedURLException;
-
 
 /**
  * Created by blk
  */
 public class BaseRunner {
 
-    public static ThreadLocal<Application> tlApp = new ThreadLocal<>();
+    public static final ThreadLocal<Application> tlApp = new ThreadLocal<>();
     public Application app;
 
     @Before
-    public void start() throws MalformedURLException {
+    public void start() {
         if (tlApp.get() != null) {
             app = tlApp.get();
             return;

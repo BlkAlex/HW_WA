@@ -41,6 +41,7 @@ public class TinkoffTariffsPage extends Page {
     public String getSummary() {
         return driver.findElement(By.xpath(Locators.getLocator("summary-price", "Общая цена"))).getText();
     }
+
     public void checkCheckBox(String name, boolean state) {
 
         CheckBox checkBox = new CheckBox(driver, name);
@@ -53,7 +54,7 @@ public class TinkoffTariffsPage extends Page {
         driver.navigate().refresh();
     }
 
-    public void checkPageTitle(String title){
+    public void checkPageTitle(String title) {
         assertTrue(driver.getTitle().contains(title));
     }
 
@@ -70,7 +71,7 @@ public class TinkoffTariffsPage extends Page {
         assertTrue(driver.findElement(By.xpath(Locators.getLocator("region-title", ""))).getText().contains(value));
     }
 
-    public boolean isRegionSelected() {
+    private boolean isRegionSelected() {
         return !driver.findElement(By.xpath(Locators.getLocator("region-title", ""))).getText().contains("Ваш регион");
     }
 }

@@ -9,7 +9,7 @@ public class GoogleResultPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickSearchResultsByLinkContains(String link){
+    public void clickSearchResultsByLinkContains(String link) {
         wait.until(d -> xpathSearcherByText(link).size() > 0);
         xpathSearcherByText(link).get(0).click();
     }

@@ -26,10 +26,9 @@ public class BrowsersFactory {
                 ChromeOptions options = new ChromeOptions();
                 options.addArguments("--disable-notifications");
 
-                HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
+                HashMap<String, Object> chromePrefs = new HashMap<>();
                 chromePrefs.put("download.default_directory",
                         System.getProperty("user.dir") + File.separator + "externalFiles" + File.separator + "downloadFiles");
-
                 chromePrefs.put("plugins.always_open_pdf_externally", true);
                 options.setExperimentalOption("prefs", chromePrefs);
                 return new ChromeDriver(options);

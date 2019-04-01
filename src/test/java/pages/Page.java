@@ -13,10 +13,10 @@ import static org.junit.Assert.assertEquals;
 
 public class Page {
 
-    Logger logger = LoggerFactory.getLogger(Page.class);
+    private final Logger logger = LoggerFactory.getLogger(Page.class);
 
-    protected WebDriver driver;
-    protected WebDriverWait wait;
+    final WebDriver driver;
+    final WebDriverWait wait;
 
     Page(WebDriver driver) {
         this.driver = driver;
@@ -28,7 +28,7 @@ public class Page {
         return true;
     }
 
-    public void switchToWindow(String windowName){
+    public void switchToWindow(String windowName) {
         wait.until(d -> {
             boolean check = false;
             for (String title : driver.getWindowHandles()) {
@@ -42,14 +42,16 @@ public class Page {
         });
     }
 
-    public List<WebElement> xpathSearcherByText(String searchText) {
+    List<WebElement> xpathSearcherByText(String searchText) {
         String xpath = String.format("//*[contains(text(),'%s')]", searchText);
         return driver.findElements(By.xpath(xpath));
     }
-    public void closeCurrentTab(){
+
+    public void closeCurrentTab() {
         driver.close();
         logger.info("Закрыта активная вкладка");
     }
+
     public void checkCurrentURL(String url) {
         assertEquals(url, driver.getCurrentUrl());
     }

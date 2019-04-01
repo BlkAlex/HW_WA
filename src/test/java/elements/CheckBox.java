@@ -5,16 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class CheckBox {
-    WebElement checkboxElement;
+    private final WebElement checkboxElement;
 
     public void click() {
-        checkboxElement.click();//FIXME
+        checkboxElement.click();
     }
-
-    public String getText() {
-        return checkboxElement.getText();//fixme
-    }
-
     public boolean getState() {
         return checkboxElement.findElement(By.xpath(".//input")).getAttribute("checked") != null;
     }

@@ -17,10 +17,9 @@ public class CheckBox {
 
     public boolean getState() {
         return checkboxElement.findElement(By.xpath(".//input")).getAttribute("checked") != null;
-        //return checkboxElement.getAttribute("checked") != null;//fixme
     }
 
-    public CheckBox(WebDriver driver, String locator) {
-        checkboxElement = driver.findElement(By.xpath(locator));
+    public CheckBox(WebDriver driver, String name) {
+        checkboxElement = driver.findElement(By.xpath(Locators.getLocator("checkbox", name)));
     }
 }

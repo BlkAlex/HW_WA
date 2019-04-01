@@ -23,7 +23,3 @@ tmp/**
 *.jar
 *.war
 *.ear
-*.zip
-*.pdf
-*.xls
-sqlparams

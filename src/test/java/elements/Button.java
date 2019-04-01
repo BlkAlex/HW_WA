@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 public class Button {
     WebElement buttonElement;
 
-    public Button(WebDriver driver, String locator) {
-        buttonElement = driver.findElement(By.xpath(locator));
+    public Button(WebDriver driver, String name) {
+        buttonElement = driver.findElement(By.xpath(Locators.getLocator("button", name)));
     }
 
     public boolean isActive() {

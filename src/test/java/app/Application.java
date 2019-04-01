@@ -12,10 +12,10 @@ import java.util.concurrent.TimeUnit;
 public class Application {
     private WebDriver driver;
     public TinkoffJobPage tinkoffJob;
-    public final TinkoffTariffsPage tinkoffTariffs;
-    public final TinkoffDocumentsPage tinkoffDocumentsPage;
-    public final GoogleMainPage google;
-    public final GoogleResultPage googleResults;
+    public TinkoffTariffsPage tinkoffTariffs;
+    public TinkoffDocumentsPage tinkoffDocumentsPage;
+    public GoogleMainPage google;
+    public GoogleResultPage googleResults;
 
     private final String browserName = System.getProperty("browser") == null ? "chrome" : System.getProperty("browser");
 
@@ -25,7 +25,7 @@ public class Application {
         driver.manage().window().maximize();
         google = new GoogleMainPage(driver);
         googleResults = new GoogleResultPage(driver);
-        //tinkoffJob = new TinkoffJobPage(driver);
+        tinkoffJob = new TinkoffJobPage(driver);
         tinkoffTariffs = new TinkoffTariffsPage(driver);
         tinkoffDocumentsPage = new TinkoffDocumentsPage(driver);
     }

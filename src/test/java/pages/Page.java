@@ -18,7 +18,7 @@ public class Page {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public Page(WebDriver driver) {
+    Page(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, 10);
     }
@@ -42,11 +42,6 @@ public class Page {
         });
     }
 
-    public void getPage(String url) {
-        driver.navigate().to(url);
-    }
-
-    //универсальный xpath локатор, вернет все элементы, содержащие текст
     public List<WebElement> xpathSearcherByText(String searchText) {
         String xpath = String.format("//*[contains(text(),'%s')]", searchText);
         return driver.findElements(By.xpath(xpath));
@@ -55,11 +50,7 @@ public class Page {
         driver.close();
         logger.info("Закрыта активная вкладка");
     }
-
     public void checkCurrentURL(String url) {
         assertEquals(url, driver.getCurrentUrl());
-    }
-    public void switchToMainTab(){
-        driver.switchTo().window(driver.getWindowHandles().iterator().next());
     }
 }

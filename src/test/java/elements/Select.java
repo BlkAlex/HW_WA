@@ -7,12 +7,17 @@ import org.openqa.selenium.WebElement;
 public class Select {
     WebElement selectElement;
 
-    public void Select(WebDriver driver, String locator) {
-        selectElement = driver.findElement(By.xpath(locator));
+    public Select(WebDriver driver, String name) {
+        selectElement = driver.findElement(By.xpath(Locators.getLocator("selector", name)));
     }
 
+
+    public void clickDropDown() {
+        selectElement.click();
+    }
     public void selectValueByName(String name) {
         //todo
+        selectElement.findElement(By.xpath("." + Locators.getLocator("selector-item", name))).click();
     }
 
     public String getCurrentValue() {

@@ -46,7 +46,6 @@ public class TestMobile extends BaseRunner {
         tinkoffTariffsPage.checkCheckBox("Безлимитные СМС", true);
         tinkoffTariffsPage.checkCheckBox("Режим модема", true);
         tinkoffTariffsPage.compareSummaryWithValue(sumKrasn);
-
     }
 
 

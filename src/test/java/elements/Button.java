@@ -15,7 +15,7 @@ public class Button {
         return buttonElement.isEnabled();
     }
     public String getText() {
-        return buttonElement.getText();//fixme
+        return buttonElement.getText();
     }
 
     public void click() {

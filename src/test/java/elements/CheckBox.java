@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 public class CheckBox {
     WebElement checkboxElement;
 
-    public void setState(boolean state) {
+    public void click() {
         checkboxElement.click();//FIXME
     }
 

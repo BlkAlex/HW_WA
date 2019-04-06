@@ -2,10 +2,10 @@ package elements;
 
 import org.openqa.selenium.WebDriver;
 
-public class TextInput extends Element {
+public class Uploader extends Element {
 
-    public TextInput(WebDriver driver, String name) {
-        super(driver, "input", name);
+    public Uploader(WebDriver driver, String name) {
+        super(driver, "uploader", name);
     }
 
     public void setText(CharSequence... chars) {
@@ -15,5 +15,4 @@ public class TextInput extends Element {
     public String getText() {
         return webElement.getAttribute("innerHTML");
     }
-
 }

@@ -22,7 +22,7 @@ public class TinkoffTariffsPage extends Page {
 
     public void selectValue(String nameSelector, String value) {
         Select select = new Select(driver, nameSelector);
-        select.clickDropDown();
+        select.click();
         select.selectValueByName(value);
     }
 
@@ -44,7 +44,7 @@ public class TinkoffTariffsPage extends Page {
 
     public void checkCheckBox(String name, boolean state) {
 
-        CheckBox checkBox = new CheckBox(driver, name);
+        CheckBox checkBox = new CheckBox(driver, name, "checkbox-with-description");
         if (checkBox.getState() != state) {
             checkBox.click();
         }

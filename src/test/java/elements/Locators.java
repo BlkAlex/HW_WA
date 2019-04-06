@@ -8,6 +8,8 @@ public class Locators {
             case "selector-item":
                 return String.format("//div[@class='ui-dropdown-field-list__item'][.//*[@class='ui-dropdown-field-list__item-text'][text()='%s']]", name);
             case "checkbox":
+                return String.format("//label[contains(@class,'ui-checkbox')][//*[contains(text(),'%s')]]", name);
+            case "checkbox-with-description":
                 return String.format("//div[contains(@class,'CheckboxWithDescription')][.//*[contains(text(),'%s')]]//div[contains(@class,'container')]", name);
             case "button":
                 return String.format("//button[contains(@class,'Button')][.//*[contains(text(),'%s')]]", name);
@@ -19,7 +21,12 @@ public class Locators {
                 return String.format("//div[contains(@class,'MobileOperatorRegionsPopup__region')]//*[contains(text(),'%s')]", name);
             case "region-change-button":
                 return "//span[contains(@class,'MvnoRegionConfirmation')][contains(text(),'Нет, изменить')]";
+            case "input":
+                return String.format("//*[@name='%s']", name);
+            case "uploader":
+                return String.format("//div[@class='ui-upload'][//*[contains(text(),'%s')]]", name);
+
         }
-        return "";
+        throw new RuntimeException(String.format("Неизвестный тип поля : %s", type));
     }
 }

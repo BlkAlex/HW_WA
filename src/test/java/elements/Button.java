@@ -1,18 +1,15 @@
 package elements;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class Button {
-    private final WebElement buttonElement;
+public class Button extends Element {
 
     public Button(WebDriver driver, String name) {
-        buttonElement = driver.findElement(By.xpath(Locators.getLocator("button", name)));
+        super(driver, "button", name);
     }
 
     public boolean isActive() {
-        return buttonElement.isEnabled();
+        return webElement.isEnabled();
     }
 
 }

@@ -8,11 +8,4 @@ public class Uploader extends Element {
         super(driver, "uploader", name);
     }
 
-    public void setText(CharSequence... chars) {
-        webElement.sendKeys(chars);
-    }
-
-    public String getText() {
-        return webElement.getAttribute("innerHTML");
-    }
 }

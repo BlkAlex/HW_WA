@@ -18,14 +18,18 @@ public class GoogleMainPage extends Page {
 
     public void open() {
         driver.navigate().to("https://www.google.ru/");
+        logger.info("Переход по URL https://www.google.ru/");
         isLoadedByTitleContains("Google");
     }
 
-    public void clickOnHintElement(String hintText){
-        driver.findElement(By.xpath(String.format("//li[./*[@class=\"suggestions-inner-container\"][contains(.,'%s %s')]]",searchField.getAttribute("value"),hintText))).click();
+    public void clickOnHintElement(String hintText) {
+        driver.findElement(By.xpath(String.format("//li[./*[@class=\"suggestions-inner-container\"][contains(.,'%s %s')]]", searchField.getAttribute("value"), hintText))).click();
+        logger.info("Переход на элемент выпадающего списка с именем \"" + hintText + "\"");
     }
-    public void setTexttoSerchField(String text){
+
+    public void setTexttoSerchField(String text) {
         searchField.sendKeys(text);
+        logger.info("Установка в поле поиска текста " + text + "\"");
     }
 
 

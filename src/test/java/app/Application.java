@@ -27,7 +27,6 @@ public class Application {
     private final String browserName = System.getProperty("browser") == null ? "chrome" : System.getProperty("browser");
 
     public Application() {
-
         driver = new EventFiringWebDriver(getDriver());
         logger = new MyListenerLogger();
         ((EventFiringWebDriver) driver).register(logger);

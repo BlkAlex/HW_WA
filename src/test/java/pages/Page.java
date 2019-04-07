@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class Page {
 
-    private final Logger logger = LoggerFactory.getLogger(Page.class);
+    Logger logger = LoggerFactory.getLogger(Page.class);
 
     final WebDriver driver;
     final WebDriverWait wait;

@@ -11,24 +11,14 @@ public class TestVacancies extends BaseRunner {
         TinkoffJobPage tinkoffJobMainPage = app.tinkoffJob;
         tinkoffJobMainPage.open();
 
-        app.getLogger().onNewStep("Нажатие на поле имя");
         tinkoffJobMainPage.clickToInput("name");
-        app.getLogger().onNewStep("Нажатие на поле дата рождения");
         tinkoffJobMainPage.clickToInput("birthday");
-        app.getLogger().onNewStep("Нажатие на поле город");
         tinkoffJobMainPage.clickToInput("city");
-        app.getLogger().onNewStep("Нажатие на поле email");
         tinkoffJobMainPage.clickToInput("email");
-        app.getLogger().onNewStep("Нажатие на поле телефон");
         tinkoffJobMainPage.clickToInput("phone");
-
-        app.getLogger().onNewStep("Нажатие на чекбокс Согласен с");
         tinkoffJobMainPage.clickToCheckBox("согласен с");
-        app.getLogger().onNewStep("Нажатие на кнопку Отправить");
         tinkoffJobMainPage.clickToButton("Отправить");
 
-
-        app.getLogger().onNewStep("Поверки вывода сообщений об ошибках на всех полях");
         tinkoffJobMainPage.checkErrorInput("name", "Поле обязательное");
         tinkoffJobMainPage.checkErrorInput("birthday", "Поле обязательное");
         tinkoffJobMainPage.checkErrorInput("city", "Поле обязательное");

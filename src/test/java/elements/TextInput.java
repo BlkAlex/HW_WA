@@ -11,9 +11,4 @@ public class TextInput extends Element {
     public void setText(CharSequence... chars) {
         webElement.sendKeys(chars);
     }
-
-    public String getText() {
-        return webElement.getAttribute("innerHTML");
-    }
-
 }

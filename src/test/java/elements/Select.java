@@ -14,7 +14,4 @@ public class Select extends Element {
         webElement.findElement(By.xpath("." + Locators.getLocator("selector-item", name))).click();
     }
 
-    public String getCurrentValue() {
-        return webElement.getText();//fixme
-    }
 }

@@ -25,7 +25,6 @@ public class Locators {
                 return String.format("//*[@name='%s']", name);
             case "uploader":
                 return String.format("//div[@class='ui-upload'][//*[contains(text(),'%s')]]", name);
-
         }
         throw new RuntimeException(String.format("Неизвестный тип поля : %s", type));
     }
